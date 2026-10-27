@@ -1,0 +1,46 @@
+[project]
+name = "sana-streaming"
+version = "0.1.0"
+requires-python = "==3.11.*"
+# Direct dependencies; everything else is locked in uv.lock.
+dependencies = [
+    "torch==2.9.1",
+    "torchvision==0.24.1",
+    "torchaudio==2.9.1",
+    "xformers==0.0.33.post2",
+    "flash-attn==2.8.3.post1",
+    "mmcv==1.7.2",
+    # mmcv 1.7.2 builds with pkg_resources, removed in setuptools>=80
+    "setuptools==79.0.1",
+    "sana",  # Sana/ submodule
+]
+
+[tool.uv.sources]
+torch = { index = "pytorch-cu128" }
+torchvision = { index = "pytorch-cu128" }
+torchaudio = { index = "pytorch-cu128" }
+sana = { path = "Sana", editable = true }
+
+[[tool.uv.index]]
+name = "pytorch-cu128"
+url = "https://download.pytorch.org/whl/cu128"
+explicit = true
+
+[tool.uv]
+# Both import torch in their build scripts.
+no-build-isolation-package = ["mmcv", "flash-attn"]
+
+[tool.uv.extra-build-dependencies]
+mmcv = ["setuptools", "wheel"]
+flash-attn = ["torch", "setuptools", "wheel"]
+
+# Declared so that locking does not need to build them.
+[[tool.uv.dependency-metadata]]
+name = "mmcv"
+version = "1.7.2"
+requires-dist = ["addict", "numpy", "opencv-python", "packaging", "pillow", "pyyaml", "regex; sys_platform == 'win32'", "yapf"]
+
+[[tool.uv.dependency-metadata]]
+name = "flash-attn"
+version = "2.8.3.post1"
+requires-dist = ["einops", "torch"]

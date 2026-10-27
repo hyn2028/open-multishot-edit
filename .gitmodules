@@ -1,0 +1,10 @@
+[submodule "methods/holocine_sdedit/HoloCine"]
+	path = methods/holocine_sdedit/HoloCine
+	url = https://github.com/yihao-meng/HoloCine.git
+[submodule "methods/sana_streaming/Sana"]
+	path = methods/sana_streaming/Sana
+	url = https://github.com/NVlabs/Sana.git
+[submodule "methods/wan_edit/Awesome-Training-Free-WAN2.1-Editing"]
+	path = methods/wan_edit/Awesome-Training-Free-WAN2.1-Editing
+	url = https://github.com/KyujinHan/Awesome-Training-Free-WAN2.1-Editing.git
+	ignore = dirty

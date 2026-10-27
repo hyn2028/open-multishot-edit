@@ -1,0 +1,31 @@
+[project]
+name = "wan-edit"
+version = "0.1.0"
+requires-python = "==3.10.*"
+# Direct dependencies; everything else is locked in uv.lock.
+dependencies = [
+    "torch==2.9.1",
+    "torchvision==0.24.1",
+    "diffusers",  # the repository's fork, replaces upstream diffusers
+    "transformers==4.51.3",
+    "accelerate==1.14.0",
+    "numpy==2.2.6",
+    "safetensors==0.8.0",
+    "sentencepiece==0.2.2",
+    "ftfy==6.3.1",
+    "regex==2026.7.19",
+    "imageio[ffmpeg]==2.37.4",
+    "pillow==12.3.0",
+    "huggingface-hub==0.36.2",
+    "matplotlib==3.10.9",  # imported by wan_attention.py
+]
+
+[tool.uv.sources]
+torch = { index = "pytorch-cu128" }
+torchvision = { index = "pytorch-cu128" }
+diffusers = { path = "Awesome-Training-Free-WAN2.1-Editing/diffusers", editable = true }
+
+[[tool.uv.index]]
+name = "pytorch-cu128"
+url = "https://download.pytorch.org/whl/cu128"
+explicit = true
